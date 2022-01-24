@@ -1,0 +1,32 @@
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+
+
+$nb-enable-css-custom-properties: true;
+
+$nb-themes: nb-register-theme((
+
+  // add your variables here like:
+
+  // color-primary-100: #f2f6ff,
+  // color-primary-200: #d9e4ff,
+  // color-primary-300: #a6c1ff,
+  // color-primary-400: #598bff,
+  // color-primary-500: #3366ff,
+  // color-primary-600: #274bdb,
+  // color-primary-700: #1a34b8,
+  // color-primary-800: #102694,
+  // color-primary-900: #091c7a,
+
+  primary: #4284f4,
+  success: #34A853,
+  warning: #FBBC05,
+  danger: #EA4335,
+  bg-color: #ffffff,
+  shadow-color:#d1d1d1,
+  white-color: #ffffff,
+  black-color: #000000,
+  list-hover-color: #f5f5f5,
+  mb-border-color: #edf1f7
+
+), default, default);

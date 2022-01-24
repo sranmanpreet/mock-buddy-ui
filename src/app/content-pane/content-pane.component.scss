@@ -1,0 +1,81 @@
+@import "../../themes.scss";
+
+nb-card {
+    height: 73vh;
+    nb-card-body {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+
+        .left-pane, .right-pane {
+            padding: 0.5rem;
+            margin:0.5rem;
+
+            .control {
+                padding: 0.25rem;
+                margin: 0.25rem;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+                label {
+                    margin: 0.25rem 0;
+                }
+
+                nb-select {
+                    width: 100%;
+                    font-size: 0.8rem;
+                    font-weight: 300;
+
+                    &::placeholder {
+                        font-size: 0.8rem;
+                        font-weight: 300;
+                    }
+                }
+
+                textarea {
+                    width: 100%;
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                    min-height: 30vh;
+
+                    &::placeholder {
+                        font-size: 0.8rem;
+                        font-weight: 300;
+                    }
+                }
+
+                input {
+                    width: 100%;
+                    font-size: 0.8rem;
+                    font-weight: 300;
+
+                    &::placeholder {
+                        font-size: 0.8rem;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+        
+        .left-pane {
+            width: 38rem;
+        }
+
+        .right-pane {
+        }
+    }
+}
+
+#control-group-body-type-content-type {
+    display: flex;
+
+    .control {
+        width: 100%;
+    }
+}
+
+nb-accordion {
+    box-shadow: none;
+    border: 1px solid nb-theme(mb-border-color);
+}

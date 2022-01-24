@@ -1,0 +1,76 @@
+<nb-card>
+    <nb-card-header>
+        <h6>Details</h6>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="left-pane">
+            <div class="control">
+                <label for="mock-name">Name</label>
+                <input type="text" name="mock-name" id="mock-name" nbInput placeholder="Enter Name"
+                    [(ngModel)]="mock.name">
+            </div>
+            <div class="control">
+                <label for="mock-route">Route</label>
+                <input type="text" name="mock-route" id="mock-route" nbInput placeholder="Enter route"
+                    [(ngModel)]="mock.route">
+            </div>
+            <div class="control">
+                <label for="mock-method">Method</label>
+                <nb-select [(selected)]="mock.method" placeholder="Select Method">
+                    <nb-option *ngFor="let method of methods" value="method">{{method}}</nb-option>
+                </nb-select>
+            </div>
+            <div class="control">
+                <label for="mock-status">Status</label>
+                <input type="number" name="mock-status" id="mock-status" nbInput placeholder="Enter Status"
+                    [(ngModel)]="mock.status">
+            </div>
+        </div>
+        <div class="right-pane">
+            <nb-accordion>
+                <nb-accordion-item>
+                  <nb-accordion-item-header>
+                    Headers
+                  </nb-accordion-item-header>
+                  <nb-accordion-item-body>
+                    <div class="header-item" *ngFor="let header of mock.headers; let index = index">
+                      <input type="text" name="header-key-{{index}}" id="header-key-{{index}}" nbInput placeholder="Key"
+                    [(ngModel)]="header.key">
+                      <input type="text" name="header-value-{{index}}" id="header-value-{{index}}" nbInput placeholder="Value"
+                    [(ngModel)]="header.value">
+                    </div>
+                  </nb-accordion-item-body>
+                </nb-accordion-item>
+              
+                <nb-accordion-item>
+                  <nb-accordion-item-header>
+                    Body
+                  </nb-accordion-item-header>
+                  <nb-accordion-item-body>
+                    <div id="control-group-body-type-content-type">
+                      <div class="control body-type">
+                          <label for="mock-body-type">Body Type</label>
+                          <nb-radio-group name="mock-body-type" id="mock-body-type" [(ngModel)]="mock.bodyType">
+                              <nb-radio value="static">Static</nb-radio>
+                              <nb-radio value="javascript">JavaScript</nb-radio>
+                          </nb-radio-group>
+                      </div>
+                      <div class="control content-type">
+                          <label for="mock-content-type">Content Type</label>
+                          <nb-select [(selected)]="mock.contentType" placeholder="Select Content Type">
+                            <nb-option *ngFor="let contentType of contentTypes" value="contentType">{{contentType}}</nb-option>
+                        </nb-select>
+                      </div>
+                    </div>
+                    <div class="control">
+                        <label for="mock-body">Body</label>
+                        <textarea nbInput name="mock-body" id="mock-body" fullWidth placeholder="Body"
+                            [(ngModel)]="mock.body"></textarea>
+                    </div>
+                  </nb-accordion-item-body>
+                </nb-accordion-item>
+              </nb-accordion>
+            
+        </div>
+    </nb-card-body>
+</nb-card>

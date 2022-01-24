@@ -1,0 +1,18 @@
+<div class="list-container">
+    <div class="list-search">
+        <input type="text" nbInput name="search" shape="round" fieldSize="small" id="searchbox" placeholder="Search">
+    </div>
+    <div class="list-content">
+        <div class="list-item" *ngFor="let mock of mocks">
+            <p class="method" [ngClass]="{get: mock.method == 'GET', post: mock.method == 'POST', put: mock.method == 'PUT', delete: mock.method == 'DELETE'}">{{mock.method
+                    | slice : 0:3}}</p>
+            <div class="name-and-route" (click)="mockDetailsEvent.emit(mock)">
+                <p class="name">{{mock.name}}</p>
+                <p class="route">{{mock.route}}</p>
+            </div>
+            <div class="actions">
+                <nb-icon icon="more-vertical-outline" [nbContextMenu]="contextMenuItems" nbContextMenuTag="{{mock.name}}" nbContextMenuTrigger="click"></nb-icon>
+            </div>
+        </div>
+    </div>
+</div>

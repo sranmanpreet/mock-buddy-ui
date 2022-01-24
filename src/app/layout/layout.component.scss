@@ -1,0 +1,10 @@
+@import '../../themes.scss';
+
+#sidebar {
+    flex: 0.8;
+}
+
+#content-pane {
+    flex: 3;
+    background-color: nb-theme(white-color);
+}

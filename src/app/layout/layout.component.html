@@ -1,0 +1,17 @@
+<nb-layout>
+
+    <nb-layout-header fixed>
+        <mock-buddy-header></mock-buddy-header>
+    </nb-layout-header>
+    <nb-layout-column id="sidebar">
+        <mock-buddy-list (mockDetailsEvent)="setMockDetails($event)"></mock-buddy-list>
+    </nb-layout-column>
+    <nb-layout-column id="content-pane">
+        <mock-buddy-content-pane [mockDetailsSubscriber]="mockDetailsSubject"></mock-buddy-content-pane>
+    </nb-layout-column>
+
+    <nb-layout-footer>
+        <mock-buddy-footer></mock-buddy-footer>
+    </nb-layout-footer>
+
+</nb-layout>
