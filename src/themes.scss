@@ -26,7 +26,20 @@ $nb-themes: nb-register-theme((
   shadow-color:#d1d1d1,
   white-color: #ffffff,
   black-color: #000000,
-  list-hover-color: #f5f5f5,
-  mb-border-color: #edf1f7
+  list-hover-color: #cbf3ffb0,
+  selected-color: #badbe4b0,
+  mb-border-color: #edf1f7,
+  text-subtitle-font-weight: 400,
+  text-subtitle-font-size: 0.8rem,
+  text-subtitle-2-font-weight: 400,
+  text-subtitle-2-font-size: 0.8rem,
+  header-padding: 0.75rem,
+  header-height: 3.5rem,
+  footer-text-line-height: 0.9rem,
+  footer-padding: 0.75rem,
+  input-small-max-width: 50rem,
+  input-medium-max-width: 80rem,
+  select-medium-max-width: 80rem,
+  card-padding: 0.85rem
 
 ), default, default);

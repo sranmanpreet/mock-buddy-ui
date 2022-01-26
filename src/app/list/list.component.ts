@@ -13,6 +13,7 @@ export class ListComponent implements OnInit {
   contextMenuItems = [{ title: 'Export'},
   { title: 'Delete'},];
   @Output() mockDetailsEvent = new EventEmitter<Mock>();
+  selectedIndex?: number= 0;
 
   constructor(private mockService: MockService, private nbMenuService: NbMenuService) { }
 
@@ -36,13 +37,25 @@ export class ListComponent implements OnInit {
         }
       );
   }
+
+  onAdd() {
+    this.mockDetailsEvent.emit();
+  }
+
+  onSelect(mock: Mock, index: number) {
+    this.selectedIndex = index;
+    this.mockDetailsEvent.emit(mock);
+  }
+
   exportMock(name: string) {
     console.log(name);
   }
+
   deleteMock(name: string) {
     for(let i=0; i<this.mocks.length; i++){
       if(this.mocks[i].name==name){
         this.mocks.splice(i,1);
+        this.mockDetailsEvent.emit();
         return;
       }
     }

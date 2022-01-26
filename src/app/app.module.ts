@@ -4,14 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbInputModule, NbIconModule, NbContextMenuModule, NbMenuModule, NbCardModule, NbRadioModule, NbSelectModule, NbAccordionComponent, NbAccordionModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbInputModule, NbIconModule, NbContextMenuModule, NbMenuModule, NbCardModule, NbRadioModule, NbSelectModule, NbAccordionComponent, NbAccordionModule, NbButtonModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LayoutComponent } from './layout/layout.component';
 import { ListComponent } from './list/list.component';
 import { ContentPaneComponent } from './content-pane/content-pane.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbSidebarModule.forRoot(),
@@ -38,7 +39,8 @@ import { FormsModule } from '@angular/forms';
     NbCardModule,
     NbRadioModule,
     NbSelectModule,
-    NbAccordionModule
+    NbAccordionModule,
+    NbButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

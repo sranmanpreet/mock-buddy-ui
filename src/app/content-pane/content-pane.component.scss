@@ -2,10 +2,22 @@
 
 nb-card {
     height: 73vh;
+
+    nb-card-header {
+        display: flex;
+
+        .actions {
+            margin-left: auto;
+
+            button {
+                margin-left: 1rem;
+            }
+        }
+    }
+
     nb-card-body {
         display: flex;
         flex-direction: row;
-        align-items: flex-start;
 
         .left-pane, .right-pane {
             padding: 0.5rem;
@@ -20,6 +32,7 @@ nb-card {
 
                 label {
                     margin: 0.25rem 0;
+                    font-size:  0.9rem;
                 }
 
                 nb-select {
@@ -59,10 +72,11 @@ nb-card {
         }
         
         .left-pane {
-            width: 38rem;
+            width: 40%;
         }
 
         .right-pane {
+            width: 60%;
         }
     }
 }
@@ -78,4 +92,28 @@ nb-card {
 nb-accordion {
     box-shadow: none;
     border: 1px solid nb-theme(mb-border-color);
+}
+
+
+.header-item {
+    display: flex;
+
+    input {
+        width: 100%;
+        padding: 0.25rem;
+        margin: 0.25rem;
+        font-size: 0.8rem;
+        font-weight: 300;
+
+        &::placeholder {
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+
+    }
+}
+
+.add-header-button {
+    margin-left: auto;
+    margin-right: 2rem;
 }

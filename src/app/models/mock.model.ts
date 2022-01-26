@@ -3,10 +3,10 @@ export interface Mock {
     name: string;
     route: string;
     method: string;
-    headers?: Array<MockHeader>;
+    headers: Array<MockHeader>;
     bodyType: string;
-    body?: string;
-    contentType?: string;
+    body: string;
+    contentType: string;
     status: string;
 }
 

@@ -1,18 +1,29 @@
-<div class="list-container">
-    <div class="list-search">
-        <input type="text" nbInput name="search" shape="round" fieldSize="small" id="searchbox" placeholder="Search">
-    </div>
-    <div class="list-content">
-        <div class="list-item" *ngFor="let mock of mocks">
-            <p class="method" [ngClass]="{get: mock.method == 'GET', post: mock.method == 'POST', put: mock.method == 'PUT', delete: mock.method == 'DELETE'}">{{mock.method
-                    | slice : 0:3}}</p>
-            <div class="name-and-route" (click)="mockDetailsEvent.emit(mock)">
-                <p class="name">{{mock.name}}</p>
-                <p class="route">{{mock.route}}</p>
-            </div>
-            <div class="actions">
-                <nb-icon icon="more-vertical-outline" [nbContextMenu]="contextMenuItems" nbContextMenuTag="{{mock.name}}" nbContextMenuTrigger="click"></nb-icon>
+<nb-card>
+    <nb-card-header>
+        <div class="list-header">
+            <h5>Mocks ({{mocks?.length}})</h5>
+            <button nbButton type="button" size="small" status="primary" (click)="onAdd()">Add</button>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="list-search">
+            <input type="search" nbInput name="search" shape="round" fieldSize="small" id="searchbox" placeholder="Search">
+        </div>
+        <div class="list-content" *ngIf="mocks">
+            <div class="list-item" *ngFor="let mock of mocks; let index=index" [ngClass]="{'highlight': selectedIndex == index}">
+                <p class="method" [ngClass]="{get: mock.method == 'GET', post: mock.method == 'POST', put: mock.method == 'PUT', delete: mock.method == 'DELETE'}">{{mock.method
+                        | slice : 0:3}}</p>
+                <div class="name-and-route" (click)="onSelect(mock, index)">
+                    <p class="name">{{mock.name}}</p>
+                    <p class="route">{{mock.route}}</p>
+                </div>
+                <div class="actions">
+                    <nb-icon icon="more-vertical-outline" [nbContextMenu]="contextMenuItems" nbContextMenuTag="{{mock.name}}" nbContextMenuTrigger="click"></nb-icon>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+        <div class="no-mocks" *ngIf="!mocks">
+            <span>No mocks yet..!!</span>
+        </div>
+    </nb-card-body>
+</nb-card>

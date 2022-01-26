@@ -1,85 +1,96 @@
 @import "../../themes.scss";
 
-.list-container {
+nb-card-body {
+    padding: 0;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-search {
     width: 100%;
-    height: 70vh;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid nb-theme(mb-border-color);
 
-    .list-search {
+    input {
         width: 100%;
+        font-size: 0.8rem;
+        font-weight: 300;
+        display: inline;
 
-        input {
-            width: 100%;
+        &::placeholder {
             font-size: 0.8rem;
             font-weight: 300;
-            box-shadow: nb-theme(shadow-color) 0px 2px 6px;
-            
-            &::placeholder {
-                font-size: 0.8rem;
-                font-weight: 300;
-            }
         }
-        margin-bottom: 0.5rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid nb-theme(white-color);
     }
+}
 
-    .list-content {
-        width: 100%;
-        height: 100%;
-        overflow-y: scroll;
+.list-content {
+    width: 100%;
+    height: 62vh;
+    overflow-y: scroll;
+    padding-bottom: 1rem;
 
-        .list-item {
-            height: 3.5rem;
-            background: nb-theme(white-color);
-            padding: 0.5rem 0 0.5rem;
-            margin: 0.5rem;
-            border-radius: 5px;
+    .list-item {
+        height: 3.5rem;
+        background: nb-theme(white-color);
+        padding: 0.5rem 0 0.5rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 1px solid nb-theme(mb-border-color);
+        padding: 0 0.2rem;
+        margin: 0;
+
+        &:hover {
+            background-color: nb-theme(list-hover-color);
+        }
+
+        &:active {
+            background-color: nb-theme(selected-color);
+        }
+
+        .method {
+            writing-mode: tb;
+            text-orientation: upright;
+            font-size: 0.7rem;
+            color: nb-theme(success);
+        }
+        .get {
+            color: nb-theme(primary);
+        }
+        .post {
+            color: nb-theme(success);
+        }
+        .put {
+            color: nb-theme(warning);
+        }
+        .delete {
+            color: nb-theme(danger);
+        }
+
+        .name-and-route {
             display: flex;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: nb-theme(shadow-color) 0px 2px 6px;
-            
-            &:hover {
-                background-color: nb-theme(list-hover-color);
-            }
+            flex-direction: column;
+            padding-left: 0.5rem;
+            width: -webkit-fill-available;
 
-            .method {
-                writing-mode: tb;
-                text-orientation: upright;
+            .route {
                 font-size: 0.7rem;
-                color: nb-theme(success);
-
-            }
-            .get {
-                color: nb-theme(primary);
-            }
-            .post {
-                color: nb-theme(success);
-            }
-            .put {
-                color: nb-theme(warning);
-            }
-            .delete {
-                color: nb-theme(danger);
-            }
-
-            .name-and-route {
-                display: flex;
-                flex-direction: column;
-                padding-left: 0.5rem;
-                width: -webkit-fill-available;
-
-                .route {
-                    font-size: 0.7rem;
-                    font-style: italic;
-                }
-            }
-
-            .actions {
-                margin-left: auto;
-                padding-right: 0.5rem;
-                cursor: pointer;
+                font-style: italic;
             }
         }
+
+        .actions {
+            margin-left: auto;
+            padding-right: 0.5rem;
+            cursor: pointer;
+        }
+    }
+    .highlight {
+        background-color: nb-theme(selected-color);
     }
 }
