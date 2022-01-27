@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbInputModule, NbIconModule, NbContextMenuModule, NbMenuModule, NbCardModule, NbRadioModule, NbSelectModule, NbAccordionComponent, NbAccordionModule, NbButtonModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbInputModule, NbIconModule, NbContextMenuModule, NbMenuModule, NbCardModule, NbRadioModule, NbSelectModule, NbAccordionComponent, NbAccordionModule, NbButtonModule, NbDialogModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LayoutComponent } from './layout/layout.component';
 import { ListComponent } from './list/list.component';
@@ -12,6 +12,7 @@ import { ContentPaneComponent } from './content-pane/content-pane.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlertModalComponent } from './shared/alert-modal/alert-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListComponent,
     ContentPaneComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AlertModalComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbSidebarModule.forRoot(),
+    NbDialogModule.forRoot(),
     NbEvaIconsModule,
     NbInputModule,
     NbIconModule,

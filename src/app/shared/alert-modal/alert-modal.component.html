@@ -1,0 +1,14 @@
+<nb-card>
+    <nb-card-header>
+        <h6>{{title}}</h6>
+    </nb-card-header>
+    <nb-card-body>
+        <p>{{description}}</p>
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="actions">
+            <button nbButton status="warning" size="small" (click)="onClose(true)">{{trueButtonLabel}}</button>
+            <button nbButton status="basic" size="small" (click)="onClose(false)">{{falseButtonLabel}}</button>
+        </div>
+    </nb-card-footer>
+</nb-card>
