@@ -19,8 +19,18 @@ const dummyMocks: Array<Mock> = [
   providedIn: 'root'
 })
 export class MockService {
+  unsavedMockExist: Boolean = false;
 
   constructor() { }
+
+  doesUnsavedMockExist(){
+    return this.unsavedMockExist;
+  }
+
+  setUnsavedMockExist (flag: Boolean) {
+    this.unsavedMockExist = flag;
+    console.log(this.doesUnsavedMockExist());
+  }
 
   getMocks() {
     return dummyMocks;

@@ -44,6 +44,7 @@
                     formControlName="key">
                   <input type="text" name="header-value-{{index}}" id="header-value-{{index}}" nbInput placeholder="Value"
                     formControlName="value">
+                  <nb-icon icon="trash-2-outline" (click)="onRemoveHeader(index)"></nb-icon>
               </div>
             </nb-accordion-item-body>
           </nb-accordion-item>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NbDialogService, NbMenuBag, NbMenuService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -12,10 +12,10 @@ import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit, OnDestroy {
+  @Output() mockDetailsEvent = new EventEmitter<Mock>();
   mocks!: Array<Mock>;
   contextMenuItems = [{ title: 'Export' },
-  { title: 'Delete' },];
-  @Output() mockDetailsEvent = new EventEmitter<Mock>();
+  { title: 'Delete' }];
   selectedIndex?: number = 0;
   unsubscribeAll$: Subject<void>;
 
@@ -49,8 +49,25 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   onSelect(mock: Mock, index: number) {
-    this.selectedIndex = index;
-    this.mockDetailsEvent.emit(mock);
+    if(this.mockService.doesUnsavedMockExist()) {
+      this.dialogService.open(AlertModalComponent, {
+        context: {
+          title: 'Are you sure?',
+          description: "Are you sure you want to navigate to " + mock.name + "  and discard unsaved changes?",
+        }, dialogClass: 'modal-medium',
+      }).onClose.pipe(takeUntil(this.unsubscribeAll$))
+        .subscribe(
+          (response: Boolean) => {
+            if (response) {
+              this.selectedIndex = index;
+              this.mockService.setUnsavedMockExist(false);
+              this.mockDetailsEvent.emit(mock);
+            }
+          });
+    } else {
+      this.selectedIndex = index;
+      this.mockDetailsEvent.emit(mock);
+    }
   }
 
   exportMock(name: string) {

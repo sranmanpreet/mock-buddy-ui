@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -36,6 +36,12 @@ export class ContentPaneComponent implements OnInit, OnDestroy {
           this.mockForm = this.getInitializedMockForm();
         }
       );
+    this.mockForm.valueChanges
+      .pipe(takeUntil(this.unsubscribeAll$))
+      .subscribe(() => {
+        console.log(this.mockForm);
+        this.mockService.setUnsavedMockExist(!this.mockForm.pristine);
+      });
   }
 
   getAfreshData() {
@@ -101,11 +107,11 @@ export class ContentPaneComponent implements OnInit, OnDestroy {
   }
 
   onAddHeader(event: Event) {
-    event.preventDefault();
     this.mock.headers?.push({ key: "", value: "" });
+    this.mockForm = this.getInitializedMockForm();
   }
 
-  onSave(){
+  onSave() {
     console.log(this.mockForm);
     this.mockService.createMock(this.mockForm?.value as Mock);
     this.getAfreshData();
@@ -113,6 +119,11 @@ export class ContentPaneComponent implements OnInit, OnDestroy {
 
   onCancel() {
     this.mockForm?.reset();
+  }
+
+  onRemoveHeader(index: number) {
+    this.mock.headers.splice(index, 1);
+    this.mockForm = this.getInitializedMockForm();
   }
 
   ngOnDestroy(): void {

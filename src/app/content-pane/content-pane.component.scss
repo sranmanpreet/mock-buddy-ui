@@ -97,6 +97,7 @@ nb-accordion {
 
 .header-item {
     display: flex;
+    align-items: center;
 
     input {
         width: 100%;
@@ -110,6 +111,15 @@ nb-accordion {
             font-weight: 300;
         }
 
+    }
+
+    nb-icon {
+        width: 2.4rem;
+        cursor: pointer;
+
+        &:hover {
+            color: nb-theme(danger);
+        }
     }
 }
 
