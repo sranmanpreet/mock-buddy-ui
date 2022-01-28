@@ -18,6 +18,7 @@ export class ListComponent implements OnInit, OnDestroy {
   { title: 'Delete' }];
   selectedIndex?: number = 0;
   unsubscribeAll$: Subject<void>;
+  searchText: string = '';
 
   constructor(private mockService: MockService, private nbMenuService: NbMenuService, private dialogService: NbDialogService) {
     this.unsubscribeAll$ = new Subject<void>();

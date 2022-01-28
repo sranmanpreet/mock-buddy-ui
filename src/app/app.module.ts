@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertModalComponent } from './shared/alert-modal/alert-modal.component';
+import { SearchPipe } from './util/search.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AlertModalComponent } from './shared/alert-modal/alert-modal.component'
     ContentPaneComponent,
     HeaderComponent,
     FooterComponent,
-    AlertModalComponent
+    AlertModalComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
