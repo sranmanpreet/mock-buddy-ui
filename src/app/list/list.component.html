@@ -10,10 +10,10 @@
             <input type="search" nbInput name="search" shape="round" fieldSize="small" id="searchbox" [(ngModel)]="searchText" placeholder="Search">
         </div>
         <div class="list-content" *ngIf="mocks">
-            <div class="list-item" *ngFor="let mock of mocks | search : searchText ; let index=index" [ngClass]="{'highlight': selectedIndex == index}">
+            <div class="list-item" *ngFor="let mock of mocks | search : searchText ; let index=index" [ngClass]="{'highlight': selectedMock == mock}">
                 <p class="method" [ngClass]="{get: mock.method == 'GET', post: mock.method == 'POST', put: mock.method == 'PUT', delete: mock.method == 'DELETE'}">{{mock.method
                         | slice : 0:3}}</p>
-                <div class="name-and-route" (click)="onSelect(mock, index)">
+                <div class="name-and-route" (click)="onSelect(mock)">
                     <p class="name">{{mock.name}}</p>
                     <p class="route">{{mock.route}}</p>
                 </div>

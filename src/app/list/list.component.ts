@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { NbDialogService, NbMenuBag, NbMenuService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -12,20 +13,22 @@ import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit, OnDestroy {
-  @Output() mockDetailsEvent = new EventEmitter<Mock>();
-  mocks!: Array<Mock>;
+  @Output() getMock = new EventEmitter<Mock>();
+  @Output() deleteMock = new EventEmitter<Mock>();
+  @Input() mocks!: Array<Mock>;
+  @Input() mockForm!: FormGroup;
   contextMenuItems = [{ title: 'Export' },
   { title: 'Delete' }];
-  selectedIndex?: number = 0;
-  unsubscribeAll$: Subject<void>;
+  @Input() selectedMock!: Mock;
   searchText: string = '';
+  
+  unsubscribeAll$: Subject<void>;
 
   constructor(private mockService: MockService, private nbMenuService: NbMenuService, private dialogService: NbDialogService) {
     this.unsubscribeAll$ = new Subject<void>();
   }
 
   ngOnInit(): void {
-    this.mocks = this.mockService.getMocks();
     this.nbMenuService.onItemClick()
       .subscribe(
         (menuBag: NbMenuBag) => {
@@ -35,7 +38,7 @@ export class ListComponent implements OnInit, OnDestroy {
               break;
             }
             case 'Delete': {
-              this.deleteMock(menuBag.tag);
+              this.onDeleteMock(menuBag.tag);
               break;
             }
             default:
@@ -46,11 +49,11 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   onAdd() {
-    this.mockDetailsEvent.emit();
+    this.getMock.emit();
   }
 
-  onSelect(mock: Mock, index: number) {
-    if(this.mockService.doesUnsavedMockExist()) {
+  onSelect(mock: Mock) {
+    if(this.mockForm.dirty) {
       this.dialogService.open(AlertModalComponent, {
         context: {
           title: 'Are you sure?',
@@ -60,14 +63,13 @@ export class ListComponent implements OnInit, OnDestroy {
         .subscribe(
           (response: Boolean) => {
             if (response) {
-              this.selectedIndex = index;
-              this.mockService.setUnsavedMockExist(false);
-              this.mockDetailsEvent.emit(mock);
+              this.selectedMock = mock;
+              this.getMock.emit(mock);
             }
           });
     } else {
-      this.selectedIndex = index;
-      this.mockDetailsEvent.emit(mock);
+      this.selectedMock = mock;
+      this.getMock.emit(mock);
     }
   }
 
@@ -75,10 +77,9 @@ export class ListComponent implements OnInit, OnDestroy {
     console.log(name);
   }
 
-  deleteMock(name: string) {
+  onDeleteMock(name: string) {
     for (let i = 0; i < this.mocks.length; i++) {
       if (this.mocks[i].name == name) {
-        console.log("hellow");
         this.dialogService.open(AlertModalComponent, {
           context: {
             title: 'Delete?',
@@ -89,7 +90,7 @@ export class ListComponent implements OnInit, OnDestroy {
             (response: Boolean) => {
               if (response) {
                 this.mocks.splice(i, 1);
-                this.mocks.length ? (this.mocks[i] ? this.mockDetailsEvent.emit(this.mocks[i]) : this.mockDetailsEvent.emit(this.mocks[i - 1])) : this.mockDetailsEvent.emit();
+                this.mocks.length ? (this.mocks[i] ? this.deleteMock.emit(this.mocks[i]) : this.deleteMock.emit(this.mocks[i - 1])) : this.deleteMock.emit();
               }
             });
         return;
