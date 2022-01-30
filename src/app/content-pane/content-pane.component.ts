@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Mock, MockHeader } from '../models/mock.model';
+import { Mock } from '../models/mock.model';
 import { MockService } from '../services/mock.service';
 import { contentTypes } from '../shared/content-types';
 import { methods } from '../shared/methods';
@@ -16,6 +16,8 @@ export class ContentPaneComponent implements OnInit, OnDestroy {
   @Input() mockDetailsSubscriber!: Subject<Mock>;
   @Input() selectedMock!: Mock;
   @Input() mockForm!: FormGroup;
+
+  @ViewChild('headerAccordionItem') headerAccordion: any;
   
   methods = methods;
   contentTypes = contentTypes;
@@ -23,7 +25,7 @@ export class ContentPaneComponent implements OnInit, OnDestroy {
 
   unsubscribeAll$: Subject<void>;
 
-  constructor(private mockService: MockService) {
+  constructor(private mockService: MockService, private fb: FormBuilder) {
     this.unsubscribeAll$ = new Subject<void>();
   }
 
@@ -41,13 +43,20 @@ export class ContentPaneComponent implements OnInit, OnDestroy {
     return this.mockForm?.get('headers') as FormArray;
   }
 
-  onAddHeader(event: Event) {
-    //this.mockForm.controls?.push({ key: "", value: "" });
+  onAddHeader() {
+    this.headerAccordion.toggle();
+    (this.mockForm?.get('headers') as FormArray).push(
+      this.fb.group({
+        key: ['', Validators.required],
+        value: ['', Validators.required]
+      })
+    );
   }
 
   onSave() {
-    console.log(this.mockForm);
-    this.mockService.createMock(this.mockForm?.value as Mock);
+    if(this.mockForm.valid){
+      this.mockService.createMock(this.mockForm?.value as Mock);
+    }
   }
 
   onCancel() {
@@ -55,7 +64,7 @@ export class ContentPaneComponent implements OnInit, OnDestroy {
   }
 
   onRemoveHeader(index: number) {
-    this.selectedMock.headers.splice(index, 1);
+    this.mockHeaderFormGroups.controls.splice(index, 1);
   }
 
   ngOnDestroy(): void {

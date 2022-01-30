@@ -15,7 +15,6 @@ export class AlertModalComponent implements OnInit {
   constructor(protected dialogRef: NbDialogRef<boolean>) { }
 
   ngOnInit(): void {
-    console.log("I am here");
   }
 
   onClose(flag: boolean) {

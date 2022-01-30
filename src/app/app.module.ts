@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbInputModule, NbIconModule, NbContextMenuModule, NbMenuModule, NbCardModule, NbRadioModule, NbSelectModule, NbAccordionComponent, NbAccordionModule, NbButtonModule, NbDialogModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbInputModule, NbIconModule, NbContextMenuModule, NbMenuModule, NbCardModule, NbRadioModule, NbSelectModule, NbAccordionComponent, NbAccordionModule, NbButtonModule, NbDialogModule, NbPopoverModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LayoutComponent } from './layout/layout.component';
 import { ListComponent } from './list/list.component';
@@ -45,7 +45,8 @@ import { SearchPipe } from './util/search.pipe';
     NbRadioModule,
     NbSelectModule,
     NbAccordionModule,
-    NbButtonModule
+    NbButtonModule,
+    NbPopoverModule
   ],
   providers: [],
   bootstrap: [AppComponent]

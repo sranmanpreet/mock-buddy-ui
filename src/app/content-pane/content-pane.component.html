@@ -11,40 +11,79 @@
       <div class="left-pane">
         <div class="control">
           <label for="mock-name">Name</label>
-          <input type="text" name="mock-name" id="mock-name" nbInput placeholder="Enter Name" formControlName="name">
+          <input type="text" name="mock-name" id="mock-name" nbInput placeholder="Enter Name" formControlName="name"
+            [nbPopover]="NameErrorTemplate"
+            [ngClass]="{'validation-error-outline': mockForm.get('name')?.dirty && mockForm.get('name')?.errors?.required }">
+          <ng-template #NameErrorTemplate>
+            <div *ngIf="mockForm.get('name')?.errors">
+              <div class="validation-error"
+                *ngIf="mockForm.get('name')?.dirty && mockForm.get('name')?.errors?.required">
+                <nb-icon icon="alert-circle-outline"></nb-icon><span> Mock Name is required</span>
+              </div>
+            </div>
+          </ng-template>
         </div>
         <div class="control">
           <label for="mock-route">Route</label>
-          <input type="text" name="mock-route" id="mock-route" nbInput placeholder="Enter route"
-            formControlName="route">
+          <input type="text" name="mock-route" id="mock-route" nbInput placeholder="Enter route" formControlName="route"
+            [nbPopover]="RouteErrorTemplate"
+            [ngClass]="{'validation-error-outline': mockForm.get('route')?.dirty && mockForm.get('route')?.errors?.required }">
+          <ng-template #RouteErrorTemplate>
+            <div *ngIf="mockForm.get('route')?.errors">
+              <div class="validation-error"
+                *ngIf="mockForm.get('route')?.dirty && mockForm.get('route')?.errors?.required">
+                <nb-icon icon="alert-circle-outline"></nb-icon><span> Mock Route is required</span>
+              </div>
+            </div>
+          </ng-template>
         </div>
         <div class="control">
           <label for="mock-method">Method</label>
-          <nb-select formControlName="method" placeholder="Select Method" select-medium-text-font-size="0.5rem">
+          <nb-select formControlName="method" placeholder="Select Method" select-medium-text-font-size="0.5rem"
+            [nbPopover]="MethodErrorTemplate"
+            [ngClass]="{'validation-error-outline': mockForm.get('method')?.dirty && mockForm.get('method')?.errors?.required }">
             <nb-option *ngFor="let method of methods" [value]="method">{{method}}</nb-option>
           </nb-select>
+          <ng-template #MethodErrorTemplate>
+            <div *ngIf="mockForm.get('method')?.errors">
+              <div class="validation-error"
+                *ngIf="mockForm.get('method')?.dirty && mockForm.get('method')?.errors?.required">
+                <nb-icon icon="alert-circle-outline"></nb-icon><span> Mock Method is required</span>
+              </div>
+            </div>
+          </ng-template>
         </div>
         <div class="control">
           <label for="mock-status">Status</label>
           <input type="number" name="mock-status" id="mock-status" nbInput placeholder="Enter Status"
-            formControlName="status">
+            formControlName="status" [nbPopover]="StatusErrorTemplate"
+            [ngClass]="{'validation-error-outline': mockForm.get('status')?.dirty && mockForm.get('status')?.errors?.required }">
+          <ng-template #StatusErrorTemplate>
+            <div *ngIf="mockForm.get('status')?.errors">
+              <div class="validation-error"
+                *ngIf="mockForm.get('status')?.dirty && mockForm.get('status')?.errors?.required">
+                <nb-icon icon="alert-circle-outline"></nb-icon><span> Mock Status is required</span>
+              </div>
+            </div>
+          </ng-template>
         </div>
       </div>
       <div class="right-pane">
         <nb-accordion>
-          <nb-accordion-item>
+          <nb-accordion-item #headerAccordionItem>
             <nb-accordion-item-header>
               <label for="add-header">Headers</label>
               <button nbButton type="button" class="add-header-button" size="tiny" name="add-header" status="primary"
-                (click)="onAddHeader($event)">Add</button>
+                (click)="onAddHeader()">Add</button>
             </nb-accordion-item-header>
-            <nb-accordion-item-body  formArrayName="headers">
-              <div class="header-item" [formGroupName]="index" *ngFor="let header of mockHeaderFormGroups.controls; let index = index">
-                  <input type="text" name="header-key-{{index}}" id="header-key-{{index}}" nbInput placeholder="Key"
-                    formControlName="key">
-                  <input type="text" name="header-value-{{index}}" id="header-value-{{index}}" nbInput placeholder="Value"
-                    formControlName="value">
-                  <nb-icon icon="trash-2-outline" (click)="onRemoveHeader(index)"></nb-icon>
+            <nb-accordion-item-body formArrayName="headers" class="headers-accordion-body">
+              <div class="header-item" [formGroupName]="index"
+                *ngFor="let header of mockHeaderFormGroups.controls; let index = index">
+                <input type="text" name="header-key-{{index}}" id="header-key-{{index}}" nbInput placeholder="Key"
+                  formControlName="key">
+                <input type="text" name="header-value-{{index}}" id="header-value-{{index}}" nbInput placeholder="Value"
+                  formControlName="value">
+                <nb-icon icon="trash-2-outline" (click)="onRemoveHeader(index)"></nb-icon>
               </div>
             </nb-accordion-item-body>
           </nb-accordion-item>
@@ -53,21 +92,41 @@
             <nb-accordion-item-header>
               <label for="">Body</label>
             </nb-accordion-item-header>
-            <nb-accordion-item-body>
+            <nb-accordion-item-body class="body-accordion-body">
               <div id="control-group-body-type-content-type">
                 <div class="control body-type">
                   <label for="mock-body-type">Body Type</label>
-                  <nb-radio-group name="mock-body-type" id="mock-body-type" formControlName="bodyType">
+                  <nb-radio-group name="mock-body-type" id="mock-body-type" formControlName="bodyType" [nbPopover]="BodyTypeErrorTemplate"
+                  [ngClass]="{'validation-error-outline': mockForm.get('bodyType')?.dirty && mockForm.get('bodyType')?.errors?.required }">
                     <nb-radio [value]="'static'">Static</nb-radio>
                     <nb-radio [value]="'javascript'">JavaScript</nb-radio>
                   </nb-radio-group>
+                  
+                <ng-template #BodyTypeErrorTemplate>
+                  <div *ngIf="mockForm.get('bodyType')?.errors">
+                    <div class="validation-error"
+                      *ngIf="mockForm.get('bodyType')?.dirty && mockForm.get('bodyType')?.errors?.required">
+                      <nb-icon icon="alert-circle-outline"></nb-icon><span> Mock Body Type is required</span>
+                    </div>
+                  </div>
+                </ng-template>
                 </div>
                 <div class="control content-type">
                   <label for="mock-content-type">Content Type</label>
-                  <nb-select formControlName="contentType" placeholder="Select Content Type">
+                  <nb-select formControlName="contentType" placeholder="Select Content Type"
+                    [nbPopover]="StatusErrorTemplate"
+                    [ngClass]="{'validation-error-outline': mockForm.get('contentType')?.dirty && mockForm.get('contentType')?.errors?.required }">
                     <nb-option *ngFor="let contentType of contentTypes" [value]="contentType">{{contentType}}
                     </nb-option>
                   </nb-select>
+                  <ng-template #StatusErrorTemplate>
+                    <div *ngIf="mockForm.get('contentType')?.errors">
+                      <div class="validation-error"
+                        *ngIf="mockForm.get('contentType')?.dirty && mockForm.get('contentType')?.errors?.required">
+                        <nb-icon icon="alert-circle-outline"></nb-icon><span> Mock Content-Type is required</span>
+                      </div>
+                    </div>
+                  </ng-template>
                 </div>
               </div>
               <div class="control">

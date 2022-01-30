@@ -1,8 +1,6 @@
 @import "../../themes.scss";
 
 nb-card {
-    height: 73vh;
-
     nb-card-header {
         display: flex;
 
@@ -19,9 +17,10 @@ nb-card {
         display: flex;
         flex-direction: row;
 
-        .left-pane, .right-pane {
+        .left-pane,
+        .right-pane {
             padding: 0.5rem;
-            margin:0.5rem;
+            margin: 0.5rem;
 
             .control {
                 padding: 0.25rem;
@@ -32,7 +31,7 @@ nb-card {
 
                 label {
                     margin: 0.25rem 0;
-                    font-size:  0.9rem;
+                    font-size: 0.9rem;
                 }
 
                 nb-select {
@@ -50,7 +49,7 @@ nb-card {
                     width: 100%;
                     font-size: 0.8rem;
                     font-weight: 300;
-                    min-height: 30vh;
+                    min-height: 26vh;
 
                     &::placeholder {
                         font-size: 0.8rem;
@@ -70,7 +69,7 @@ nb-card {
                 }
             }
         }
-        
+
         .left-pane {
             width: 40%;
         }
@@ -92,8 +91,18 @@ nb-card {
 nb-accordion {
     box-shadow: none;
     border: 1px solid nb-theme(mb-border-color);
-}
 
+    nb-accordion-item {
+        .headers-accordion-body {
+            max-height: 30vh;
+            overflow-y: scroll;
+        }
+
+        .body-accordion-body {
+            max-height: 53vh;
+        }
+    }
+}
 
 .header-item {
     display: flex;
@@ -110,7 +119,6 @@ nb-accordion {
             font-size: 0.8rem;
             font-weight: 300;
         }
-
     }
 
     nb-icon {
@@ -126,4 +134,25 @@ nb-accordion {
 .add-header-button {
     margin-left: auto;
     margin-right: 2rem;
+}
+
+.validation-error {
+    padding: 1rem;
+    color: nb-theme(danger);
+}
+
+.validation-error-outline {
+    border-color: nb-theme(danger);
+
+    &:hover {
+        border-color: nb-theme(danger);
+    }
+
+    &:active {
+        border-color: nb-theme(danger);
+    }
+
+    &:focus {
+        border-color: nb-theme(danger);
+    }
 }

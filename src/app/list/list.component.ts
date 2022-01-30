@@ -53,7 +53,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   onSelect(mock: Mock) {
-    if(this.mockForm.dirty) {
+    if(this.mockForm.dirty && this.selectedMock.name != mock.name) {
       this.dialogService.open(AlertModalComponent, {
         context: {
           title: 'Are you sure?',

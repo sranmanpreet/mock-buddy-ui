@@ -13,6 +13,11 @@ const dummyMocks: Array<Mock> = [
   { name: "Mock 9", route: "/mock/9", method: "GET", bodyType: "javascript", contentType: "application/json", status: "200", headers: [], body: '' },
   { name: "Mock 10", route: "/mock/10", method: "POST", bodyType: "static", contentType: "application/json", status: "201", headers: [], body: '' },
   { name: "Mock 11", route: "/mock/11", method: "PUT", bodyType: "static", contentType: "application/json", status: "200", headers: [], body: '' },
+  { name: "Mock 12", route: "/mock/7", method: "PUT", bodyType: "static", contentType: "application/json", status: "200", headers: [], body: '' },
+  { name: "Mock13", route: "/mock/8", method: "DELETE", bodyType: "static", contentType: "application/json", status: "200", headers: [], body: '' },
+  { name: "Mock 14", route: "/mock/9", method: "GET", bodyType: "javascript", contentType: "application/json", status: "200", headers: [], body: '' },
+  { name: "Mock 15", route: "/mock/10", method: "POST", bodyType: "static", contentType: "application/json", status: "201", headers: [], body: '' },
+  { name: "Mock 16", route: "/mock/11", method: "PUT", bodyType: "static", contentType: "application/json", status: "200", headers: [], body: '' },
 ];
 
 @Injectable({
